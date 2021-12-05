@@ -1,4 +1,12 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
+
+def prep_explore():
+    """ Cleans and splits data for exploration, returns splits """
+    df = clean_ratings()
+    train, validate, test = split_data(df)
+    
+    return train, validate, test
 
 def clean_ratings():
     """ 
@@ -44,9 +52,10 @@ def clean_ratings():
     return df
 
 def drop_low_count_countries(df):
-    """ Drop a few low-count values in Country from dataframe, return df """
+    """ Drops a few low-count values in Country from dataframe, returns df """
     # get country names for countries with less than 5 cumulative rows in df
-    low_count_countries = df.Country.value_counts()[df.Country.value_counts() < 5].index.tolist()
+    counts = df.Country.value_counts()
+    low_count_countries = counts[counts < 5].index.tolist()
     # init empty index list to extend with indices of low-count countries
     low_count_indices = []
     # iterate through each country having a low value count
@@ -59,7 +68,8 @@ def drop_low_count_countries(df):
     return df
 
 def ratings_to_bool(df):
-    """ Convert ratings column of df to new column specifying whether rating is 5 or not """
+    """ Converts ratings column of df to new column specifying 
+        whether rating is 5 or not, returns df """
     # cast rating column as float
     df['Stars'] = df.Stars.astype('float')
     # new column for 5-star ramen
@@ -69,3 +79,12 @@ def ratings_to_bool(df):
 
     return df
 
+def split_data(df):
+    """ Splits data into Train (60%), Validate (20%), and Test (20%) splits,
+        returns splits"""
+    train_validate, test = train_test_split(df, test_size=.2, random_state=777)
+    train, validate = train_test_split(train_validate, test_size=.25, random_state=777)
+    print("Train size:", train.shape, 
+          "Validate size:", validate.shape, 
+          "Test size:", test.shape)
+    return train, validate, test
