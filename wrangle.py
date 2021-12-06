@@ -42,7 +42,7 @@ def clean_ratings():
     df = df.drop(columns=['Review #','Top Ten'])
     # fix remaining column names
     df = df.rename(columns={'Brand':'brand', 
-                            'Variety':'product', 
+                            'Variety':'name', 
                             'Style':'package', 
                             'Country':'country'})
 
