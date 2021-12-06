@@ -1,10 +1,26 @@
 # Repository Overview
-My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a classification model that predicts ratings of ramen based on brand, style, variety, and country of origin.
+This repository contains my analysis for the Ramen Ratings dataset. The goal is to predict whether a ramen product is rated as five stars or not and identify potential factors that increase or decrease a ramen product's rating using statistical analysis.
+
+This repository was my first side project alongside my time in the Codeup data science program. I'm revisiting it now (a few months later) because I want to apply the new skills and knowledge I've gained since working on it to deliver a better product. The previous work remains in the form of old_analysis.ipynb and the README contents marked with (Old) below.
 
 # Link to Data
 https://www.kaggle.com/residentmario/ramen-ratings
 
-# Highlights, Takeaways
+# What I Intend to Improve
+1. Build better predictive models by focusing on a two-class problem and applying SMOTE+Tomek resampling for the model training split
+2. Clean the data more thoroughly to enable improved statistical analysis
+3. Apply better statistical analysis with trustworthy conclusions
+4. Push work to scripts
+5. Use cross-validation to select better models
+6. Use ROC Curve AUC to select better models
+7. Deliver specific findings in the README
+8. Build a data product that takes a user's input and gives back the probability of it being five stars
+
+# (Old) Readme Contents
+## (Old) Repository Overview
+My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a classification model that predicts ratings of ramen based on brand, style, variety, and country of origin.
+
+## (Old) Highlights, Takeaways
 - Decided to use a classification approach to predict ramen ratings (star ratings from 0 to 5)
 - Conducted a lot of statistical testing against existing and engineered features
 - Created multiple engineered features
@@ -12,7 +28,7 @@ https://www.kaggle.com/residentmario/ramen-ratings
 - Modified precision of target for modeling
 - Beat baseline prediction accuracy with multiple models and feature combinations
 
-# Specific Work That Was Done
+## (Old) Specific Work That Was Done
 0. Decide how to approach data
     * Rating is dependent variable
     * First try to predict each 0.25-step rating increment between 0 and 5
@@ -76,7 +92,7 @@ https://www.kaggle.com/residentmario/ramen-ratings
         * Engineered features *and* Style, Country best-performed: DecisionTreeClassifier with max_depth=2, min_samples_leaf=1
         * Only-Country and Add-Brand approaches had better prediction accuracy than baseline, but All-Possible performed equally with baseline
 
-# Recreate my work
+## (Old) Recreate my work
 1. Download the data from the link above
 2. Initialize a Jupyter Notebook server in the same directory as the data
 3. Run all cells in ramen_ratings_analysis.ipynb
