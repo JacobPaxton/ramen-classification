@@ -155,10 +155,13 @@ def create_flavor_features(df):
     low_percent_5star = ['chicken', 'beef']
     # high bracket feature
     df['many_5stars_flavor'] = df.flavor.str.contains('|'.join(high_percent_5star))
+    df['many_5stars_flavor'] = df['many_5stars_flavor'].fillna(False)
     # medium bracket feature
     df['moderate_5stars_flavor'] = df.flavor.str.contains('|'.join(mid_percent_5star))
+    df['moderate_5stars_flavor'] = df['moderate_5stars_flavor'].fillna(False)
     # low bracket feature
     df['few_5stars_flavor'] = df.flavor.str.contains('|'.join(low_percent_5star))
+    df['few_5stars_flavor'] = df['few_5stars_flavor'].fillna(False)
     # unknown bracket feature
     df['unknown_5stars_flavor'] = df.flavor.str.contains('|'.join(final_flavors)) == False
 
