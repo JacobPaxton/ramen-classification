@@ -16,6 +16,33 @@ https://www.kaggle.com/residentmario/ramen-ratings
 7. Deliver specific findings in the README
 8. Build a data product that takes a user's input and gives back the probability of it being five stars
 
+# Work Done So Far
+1. Wrangle: Prepared data for a two-class problem
+2. Wrangle: Clean the data more thoroughly to enable improved statistical analysis
+3. Explore: Used statistical analysis against our existing features for Brand, Country, and Packaging
+    * Eliminated Ramen Brand and Packaging because they are independent from the target
+    * Kept Ramen Country of Origin because it has a dependent relationship with the target
+4. Explore: Used feature engineering to split out the Ramen Product Name column.
+    * Split product names into keywords
+    * Conducted domain research and translation to determine which categories a keyword belongs to
+    * Grouped relevant keywords into features
+    * Ran statistical tests to determine if the new features have a relationship with the target
+    * Eliminated features that did not have a relationship with the target
+    * Eliminated low-count or irrelevant keywords from important features
+    * Split keywords back out from feature into low-, medium-, and high-proportion groups in terms of 5-Stars
+    * Created new features for the new brackets, including an 'unknown' bracket
+    * Checked final features against the target in terms of proportionality
+
+# Next Steps
+1. Model
+    * Use SMOTE+Tomek resampling to handle the class imbalance
+    * Build better predictive models
+    * Use cross-validation to select better models
+    * Use ROC Curve AUC to select better models
+    * Push model work to scripts
+2. Data Product - 'Five-Star Ramen Guesser'
+    * Build a data product that takes a user's input and gives back the probability of it being five stars
+
 # (Old) Readme Contents
 ## (Old) Repository Overview
 My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a classification model that predicts ratings of ramen based on brand, style, variety, and country of origin.
