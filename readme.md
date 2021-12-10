@@ -32,16 +32,16 @@ https://www.kaggle.com/residentmario/ramen-ratings
     * Split keywords back out from feature into low-, medium-, and high-proportion groups in terms of 5-Stars
     * Created new features for the new brackets, including an 'unknown' bracket
     * Checked final features against the target in terms of proportionality
+5. Model: Used SMOTE+Tomek resampling to handle the class imbalance
+6. Model: Built better predictive models
+    * Did not need cross-validation to select better models
+    * Calculated ROC AUC for model
+    * Pushed model work to scripts
 
 # Next Steps
-1. Model
-    * Use SMOTE+Tomek resampling to handle the class imbalance
-    * Build better predictive models
-    * Use cross-validation to select better models
-    * Use ROC Curve AUC to select better models
-    * Push model work to scripts
-2. Data Product - 'Five-Star Ramen Guesser'
+1. Data Product - 'Five-Star Ramen Guesser'
     * Build a data product that takes a user's input and gives back the probability of it being five stars
+2. Create Final Notebook
 
 # (Old) Readme Contents
 ## (Old) Repository Overview
