@@ -11,17 +11,17 @@ def chi2_ramen_brand(train):
     brand_5star_crosstab = pd.crosstab(train.brand, train.five_stars)
     # limit only to brands with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (brand_5star_crosstab[False] > 5) & 
-                         (brand_5star_crosstab[True] > 5)
+    enough_values_mask = ((brand_5star_crosstab[False] > 5) & 
+                          (brand_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(brand_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Ramen brand and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Ramen brand and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_packaging(train):
     """ Perform Chi-Square test on Ramen packagings, print results """
@@ -31,16 +31,16 @@ def chi2_ramen_packaging(train):
     package_5star_crosstab = pd.crosstab(train.package, train.five_stars)
     # limit only to packaging with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (package_5star_crosstab[False] > 5) & 
-                         (package_5star_crosstab[True] > 5)
+    enough_values_mask = ((package_5star_crosstab[False] > 5) & 
+                          (package_5star_crosstab[True] > 5))
     _, p, _, _ = stats.chi2_contingency(package_5star_crosstab)
     # check if p is significant
     if p < alpha:
         print("Packaging and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Packaging and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_origin_country(train):
     """ Perform Chi-Square test on Ramen country of origin, print results """
@@ -50,17 +50,17 @@ def chi2_ramen_origin_country(train):
     country_5star_crosstab = pd.crosstab(train.country, train.five_stars)
     # limit only to countries with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (country_5star_crosstab[False] > 5) & 
-                         (country_5star_crosstab[True] > 5)
+    enough_values_mask = ((country_5star_crosstab[False] > 5) & 
+                          (country_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(country_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Country of origin and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Country of origin and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_noodle_type(train):
     """ Perform Chi-Square test on engineered Ramen noodle_type column, print results """
@@ -72,17 +72,17 @@ def chi2_ramen_noodle_type(train):
     noodle_type_5star_crosstab = pd.crosstab(train.noodle_type, train.five_stars)
     # limit only to countries with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (noodle_type_5star_crosstab[False] > 5) & 
-                         (noodle_type_5star_crosstab[True] > 5)
+    enough_values_mask = ((noodle_type_5star_crosstab[False] > 5) & 
+                          (noodle_type_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(noodle_type_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Noodle type and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Noodle type and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_flavor(train):
     """ Perform Chi-Square test on engineered Ramen flavor column, print results """
@@ -94,17 +94,17 @@ def chi2_ramen_flavor(train):
     flavor_5star_crosstab = pd.crosstab(train.flavor, train.five_stars)
     # limit only to countries with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (flavor_5star_crosstab[False] > 5) & 
-                         (flavor_5star_crosstab[True] > 5)
+    enough_values_mask = ((flavor_5star_crosstab[False] > 5) & 
+                          (flavor_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(flavor_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Flavor and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Flavor and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_spicy_status(train):
     """ Perform Chi-Square test on engineered Ramen spicy column, print results """
@@ -116,17 +116,17 @@ def chi2_ramen_spicy_status(train):
     spicy_5star_crosstab = pd.crosstab(train.spicy, train.five_stars)
     # limit only to countries with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (spicy_5star_crosstab[False] > 5) & 
-                         (spicy_5star_crosstab[True] > 5)
+    enough_values_mask = ((spicy_5star_crosstab[False] > 5) & 
+                          (spicy_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(spicy_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Spicy status and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Spicy status and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 def chi2_ramen_fried_status(train):
     """ Perform Chi-Square test on engineered Ramen fried column, print results """
@@ -138,17 +138,17 @@ def chi2_ramen_fried_status(train):
     fried_5star_crosstab = pd.crosstab(train.fried, train.five_stars)
     # limit only to countries with sufficient value counts in crosstab 
     # (an assumption of chi-square)
-    enough_values_mask = (fried_5star_crosstab[False] > 5) & 
-                         (fried_5star_crosstab[True] > 5)
+    enough_values_mask = ((fried_5star_crosstab[False] > 5) & 
+                          (fried_5star_crosstab[True] > 5))
     # run chi-square test
     _, p, _, _ = stats.chi2_contingency(fried_5star_crosstab[enough_values_mask])
     # check if p is significant
     if p < alpha:
         print("Fried status and five-star ratings have a dependent relationship with 95% confidence.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
     else:
         print("Fried status and five-star ratings are independent, did not pass 95% confidence interval.")
-        print("p-value:", p)
+        print("p-value:", round(p, 3))
 
 # ------------------------ Mapping Functions ------------------------ #
 
@@ -185,6 +185,52 @@ def fried_mapper(row, keywords, new_value):
     return row
 
 # ------------------------ Feature Creators ------------------------ #
+
+def create_has_keyword(train):
+    """ Create column indicating if row's product name contains a keyword or not """
+    # identify all keywords, prepare list for df.col.str.contains()
+    keyword_mask = '|'.join(['Vermicelli', 'Vernicalli', 'Bihun', 'Sano', 'Chicken', 
+    'Chikin', 'Duck', 'Vegetable', 'Veggie', 'Vegetarian','Beef', 'Gomtang', 
+    'Seolleongtang', 'Sukiyaki', 'Nam Tok', 'Pork', 'Jjajangmen', 'Jiajang', 
+    'Tonkotsu', 'Tomkotsu', 'Bacon', 'Budae', 'Seafood', 'Crab', 'Anchovy', 'Bajirak', 
+    'Clam', 'Abalone', 'Scallop', 'Vongole', 'Salmon', 'Lobster', 'Shrimp', 'Prawn', 
+    'Tuna', 'Tteok', 'Rabokki', 'Raobokki', 'Spicy', 'Spice', 'Shin', 'Jjamppong', 
+    'Jjambbong', 'Buldalk', 'Sutah', 'Budae', 'Habanero', 'Jinjja', 'Jin', 'Yeul', 
+    'Mala', 'Teumsae', 'Bibim', 'Picante', 'Bulnak', 'Volcano', 'Odongtong', 
+    'Sriracha', 'Arrabiata', 'Tom Yum', 'Tom Yam', 'Tom Saab', 'Tom Klong', 'Suki', 
+    'Stir Fry', 'Bokkeum', 'Tteokbokki', 'Topokki', 'Yukgaejang', 'Rabokki', 
+    'Yakisoba', 'Yaki-Soba', 'Yakiosoba', 'Fried', 'Non-Fried', 'Goreng', 
+    'Ramyonsari', 'Keopnurungji', 'Sabalmyeon', 'Miso', 'Teriyaki', 'Mushroom', 'Udon', 
+    'Udoin', 'Tomato', 'Chili', 'Chilli', 'chili', 'Wonton', 'Wantan', 'Pickled', 
+    'Sesame', 'Superior', 'Carbonara', 'Chow Mein', 'Sweet', 'Pad Thai', 'Sour', 
+    'sour', 'Curry', 'Soy', 'Shoyu', 'Shiitake', 'Shitake', 'Tofu', 'Pho', 'Clear', 
+    'Egg', 'Tempura', 'Laksa', 'Buckwheat', 'Soba', 'Salt', 'Shio', 'Sio', 'Tomato', 
+    'Neapolitan', 'Napolitan', 'Spaghetti', 'Mayo', 'Barbecue', 'BBQ', 'Masala', 
+    'Kimchi', 'Veg','Tteobokki', 'Rice', 'Onion', 'Pollo', 'Cheese', 'Betawi', 
+    'Chah Chiang','Namja', 'Perisa', 'Kari', 'Jjawang', 'Jjajangmyeon', 'Sogokimyun', 
+    'Jjajang', 'Ossyoi', 'Befikr', 'curry', 'Sotanghon', 'U-Dong', 'U-dong', 
+    'Mi Goreng', 'Kocok', 'Chacharoni', 'Yakibuta', 'Cuchareable', 'RMy', 'Jalapeno', 
+    'Biryani', 'Carne', 'Kimchee', 'Pad Kee Mao', 'Kalguksoo', 'Prok', 'Nipis', 
+    'Jjampong', 'Buldak', 'tom Yum', 'Sesami', 'Kim Chee', 'Kebab', 'Hyoubanya', 
+    'Batchoy', 'Gentong', 'Kokomen', 'Requeijao', 'Champong', 'Gallina', 'Bulalo', 
+    'Wasabi', 'Kalamansi', 'Cabe', 'Oosterse', 'Kung Pao'])
+    # create True/False for whether the row contains a keyword in the product name
+    train['has_keyword'] = train.name.str.contains(keyword_mask)
+
+    return train
+
+def check_non_keywords(train):
+    """ Check value counts of words I did not designate as keywords in product names """
+    # check all rows without keywords for each unique word's value counts in entire list
+    print(
+        pd.Series( # make a Series of each instance of each word
+            ' '.join(
+                    train[~train.has_keyword]    # look at rows we haven't caught with a keyword yet
+                    .name.tolist()        # put all 'name' cells in a list
+                    ).split()        # join all lists into one string, then split the string into a list of each word
+        ).value_counts()        # calculate the value counts of each word in the series
+        .head(10)         # display the top 10 (changed from 30 to 10 after the words I wanted were captured)
+    )
 
 def create_noodle_type(train):
     """ 
@@ -318,12 +364,12 @@ def create_fried(train):
         Return dataframe with new column.
     """
     # fried
-    keywords = ['Fried', 'Stir Fry', 'Bokkeum', 'Tteokbokki', 'Tteobokki', 'Topokki', 
-                'Yukgaejang', 'Rabokki', 'Yakisoba', 'Yaki-Soba', 'Yakiosoba', 'Goreng', 
-                'Tempura', 'Kung Pao', 'Sukiyaki', 'Kebab', 'Gentong', 'Bulalo', 
-                'Jjajangmyeon', 'Jjajangmen', 'Jiajang', 'Jjajang', 'Chacharoni', 
-                'Jjawang', 'Tonkotsu', 'Tomkotsu', 'Bacon', 'Yakibuta', 'Batchoy', 
-                'Chow Mein']
+    keywords = ['Stir Fry', 'Stir-Fried', ' Fried', 'Bokkeum', 'Tteokbokki', 
+                'Tteobokki', 'Topokki', 'Yukgaejang', 'Rabokki', 'Yakisoba', 
+                'Yaki-Soba', 'Yakiosoba', 'Goreng', 'Tempura', 'Kung Pao', 
+                'Sukiyaki', 'Kebab', 'Gentong', 'Bulalo', 'Jjajangmyeon', 'Jjajangmen', 
+                'Jiajang', 'Jjajang', 'Chacharoni', 'Jjawang', 'Tonkotsu', 'Tomkotsu', 
+                'Bacon', 'Yakibuta', 'Batchoy', 'Chow Mein']
     new_value = 'True'
     train = train.apply(lambda row: fried_mapper(row, keywords, new_value), axis=1)
     # not fried
