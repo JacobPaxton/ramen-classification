@@ -1,3 +1,7 @@
+# Ramen Ratings Classification
+
+![This is an image](https://i.imgur.com/ZR4mrRB.jpeg)
+
 # Repository Overview
 This repository contains my analysis for the Ramen Ratings dataset. The goal is to predict whether a ramen product is rated as five stars or not and identify potential factors that increase or decrease a ramen product's rating using statistical analysis.
 
@@ -37,6 +41,11 @@ https://www.kaggle.com/residentmario/ramen-ratings
     * Did not need cross-validation to select better models
     * Calculated ROC AUC for model
     * Pushed model work to scripts
+7. Final Notebook: Add Overview section containing summary of work and findings
+8. Final Notebook: Add Wrangle section
+9. Final Notebook: Add keyword categorization section to Explore
+10. Final Notebook: Add feature creation and statistical testing section to Explore
+11. Final Notebook: Add univariate analysis section to Explore
 
 # Next Steps
 1. Data Product - 'Five-Star Ramen Guesser'
