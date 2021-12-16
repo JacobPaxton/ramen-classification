@@ -10,16 +10,6 @@ This repository was my first side project alongside my time in the Codeup data s
 # Link to Data
 https://www.kaggle.com/residentmario/ramen-ratings
 
-# What I Intend to Improve
-1. Build better predictive models by focusing on a two-class problem and applying SMOTE+Tomek resampling for the model training split
-2. Clean the data more thoroughly to enable improved statistical analysis
-3. Apply better statistical analysis with trustworthy conclusions
-4. Push work to scripts
-5. Use cross-validation to select better models
-6. Use ROC Curve AUC to select better models
-7. Deliver specific findings in the README
-8. Build a data product that takes a user's input and gives back the probability of it being five stars
-
 # Work Done So Far
 1. Wrangle: Prepared data for a two-class problem
 2. Wrangle: Clean the data more thoroughly to enable improved statistical analysis
@@ -53,10 +43,20 @@ https://www.kaggle.com/residentmario/ramen-ratings
 2. Create Final Notebook
 
 # (Old) Readme Contents
-## (Old) Repository Overview
+### (Old) What I Intend to Improve
+1. Build better predictive models by focusing on a two-class problem and applying SMOTE+Tomek resampling for the model training split
+2. Clean the data more thoroughly to enable improved statistical analysis
+3. Apply better statistical analysis with trustworthy conclusions
+4. Push work to scripts
+5. Use cross-validation to select better models
+6. Use ROC Curve AUC to select better models
+7. Deliver specific findings in the README
+8. Build a data product that takes a user's input and gives back the probability of it being five stars
+
+### (Old) Repository Overview
 My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a classification model that predicts ratings of ramen based on brand, style, variety, and country of origin.
 
-## (Old) Highlights, Takeaways
+### (Old) Highlights, Takeaways
 - Decided to use a classification approach to predict ramen ratings (star ratings from 0 to 5)
 - Conducted a lot of statistical testing against existing and engineered features
 - Created multiple engineered features
@@ -64,7 +64,7 @@ My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a clas
 - Modified precision of target for modeling
 - Beat baseline prediction accuracy with multiple models and feature combinations
 
-## (Old) Specific Work That Was Done
+### (Old) Specific Work That Was Done
 0. Decide how to approach data
     * Rating is dependent variable
     * First try to predict each 0.25-step rating increment between 0 and 5
@@ -128,7 +128,7 @@ My analysis of Kaggle dataset 'Ramen-Ratings'. Produce insights and build a clas
         * Engineered features *and* Style, Country best-performed: DecisionTreeClassifier with max_depth=2, min_samples_leaf=1
         * Only-Country and Add-Brand approaches had better prediction accuracy than baseline, but All-Possible performed equally with baseline
 
-## (Old) Recreate my work
+### (Old) Recreate my work
 1. Download the data from the link above
 2. Initialize a Jupyter Notebook server in the same directory as the data
 3. Run all cells in ramen_ratings_analysis.ipynb
