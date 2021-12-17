@@ -1,5 +1,7 @@
 import pandas as pd
 from scipy import stats
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # ------------------------ Chi-Square Functions ------------------------ #
 
@@ -380,3 +382,153 @@ def create_fried(train):
     train = train.apply(lambda row: fried_mapper(row, keywords, new_value), axis=1)
 
     return train
+
+# ------------------------ Country vs Five-Star Reviews ------------------------ #
+
+def country_five_star_counts(train):
+    """ Check total review counts and five-star review counts for each country """
+    # init empty list for results
+    results_list = []
+    # iterate each country and check results
+    for cntry in train.country.unique().tolist():
+        # get total count of country's reviews
+        total_count = (train.country == cntry).sum()
+        # get count of 5-star reviews for country
+        count_5stars = (train[train.five_stars == 'True'].country == cntry).sum()
+        # check if at least 5 5-star reviews
+        enough = count_5stars >= 5
+        # get proportion between 5-star reviews and total count
+        proportion_5stars = count_5stars / total_count
+        # add results to list
+        results_list.append(f'{cntry} ({enough}): {total_count} reviews, {int(proportion_5stars * 100)}% 5-star')
+        
+    return results_list
+
+def country_five_star_features(train):
+    """ 
+        Create high-, medium-, and low-proportion features for 
+        country against five-star ratings.
+    """
+    # make list of final countries
+    final_countries = ['Japan', 'USA', 'South Korea', 'Taiwan', 'China', 'Thailand', 
+                       'Malaysia', 'Hong Kong', 'Indonesia', 'Singapore']
+    # bracket countries into high-, medium-, and low-proportion five star review brackets
+    high_percent_5star = ['Malaysia', 'Singapore', 'Taiwan']
+    mid_percent_5star = ['Hong Kong', 'Japan', 'South Korea', 'Indonesia']
+    low_percent_5star = ['China', 'Thailand', 'USA']
+    # high bracket
+    train['many_5stars_country'] = train.country.str.contains('|'.join(high_percent_5star))
+    # medium bracket
+    train['moderate_5stars_country'] = train.country.str.contains('|'.join(mid_percent_5star))
+    # low bracket
+    train['few_5stars_country'] = train.country.str.contains('|'.join(low_percent_5star))
+    # unknown bracket
+    train['unknown_5stars_country'] = train.country.str.contains('|'.join(final_countries)) == False
+    # drop redundant country column
+    train.drop(columns='country', inplace=True)
+
+    return train
+
+# ------------------------ Flavor vs Five-Star Reviews ------------------------ #
+
+def flavor_five_star_counts(train):
+    non_null_flavor = train[train.flavor.isna() == False]
+    # init empty list for results
+    results_list = []
+    # iterate each flavor and check results
+    for flvr in non_null_flavor.flavor.unique().tolist():
+        # get total count of flavor's reviews
+        total_count = (non_null_flavor.flavor == flvr).sum()
+        # get count of 5-star reviews for flavor
+        count_5stars = (non_null_flavor[non_null_flavor.five_stars == 'True'].flavor == flvr).sum()
+        # check if at least 5 5-star reviews
+        enough = count_5stars >= 5
+        # get proportion between 5-star reviews and total count
+        proportion_5stars = count_5stars / total_count
+        # add results to list
+        results_list.append(f'{flvr} ({enough}): {total_count} reviews, {int(proportion_5stars * 100)}% 5-star')
+    
+    return results_list
+
+def flavor_five_star_features(train):
+    """ 
+        Create high-, medium-, and low-proportion features for 
+        flavor against five-star ratings.
+    """
+    # make list of final flavors
+    final_flavors = ['curry', 'chicken', 'crustacean', 'beef', 'sesame', 'pork']
+    # make three brackets based on 5-star proportion
+    high_percent_5star = ['curry', 'sesame']
+    mid_percent_5star = ['pork', 'crustacean']
+    low_percent_5star = ['chicken', 'beef']
+    # high bracket, turn nulls to false (captured in 'unknown_5stars_flavor)
+    train['many_5stars_flavor'] = train.flavor.str.contains('|'.join(high_percent_5star))
+    train['many_5stars_flavor'] = train['many_5stars_flavor'].fillna(False)
+    # medium bracket, turn nulls to false (captured in 'unknown_5stars_flavor)
+    train['moderate_5stars_flavor'] = train.flavor.str.contains('|'.join(mid_percent_5star))
+    train['moderate_5stars_flavor'] = train['moderate_5stars_flavor'].fillna(False)
+    # low bracket, turn nulls to false (captured in 'unknown_5stars_flavor)
+    train['few_5stars_flavor'] = train.flavor.str.contains('|'.join(low_percent_5star))
+    train['few_5stars_flavor'] = train['few_5stars_flavor'].fillna(False)
+    # unknown bracket
+    train['unknown_5stars_flavor'] = train.flavor.str.contains('|'.join(final_flavors)) == False
+    # drop redundant flavor column
+    train.drop(columns='flavor', inplace=True)
+
+    return train
+
+# ------------------------ Visualizations ------------------------ #
+
+def univariate_bars(train):
+    """ Show histograms for the Ramen features post-keyword categorization """
+    # initial univariate histograms
+    sns.histplot(train.five_stars) # five_stars
+    plt.title('Target: five_stars')
+    plt.xlabel('')
+    plt.show()
+
+    sns.histplot(train.country) # country
+    plt.title('Feature: country')
+    plt.xticks(rotation=90)
+    plt.xlabel('')
+    plt.show()
+
+    sns.histplot(flavor_col) # flavor
+    plt.title('Feature: flavor')
+    plt.xticks(rotation=60)
+    plt.xlabel('')
+    plt.show()
+
+    sns.histplot(spicy_col) # spicy
+    plt.title('Feature: spicy')
+    plt.xlabel('')
+    plt.show()
+
+def bivariate_bars(train):
+    """ 
+        Show separate histograms for is-five-stars and not-five-stars for 
+        each model-ready feature.
+    """
+    # iterate through each non-target feature
+    for col in train.columns[1:]:
+        # create samples based on 5-star and not 5-star reviews
+        col_not_5star = train[train.five_stars == 'False'][col].dropna().astype('str')
+        col_is_5star = train[train.five_stars == 'True'][col].dropna().astype('str')
+        # viz header
+        print('-'*20, col, '-'*20)
+        print(train[col].value_counts())
+        # visualization
+        plt.subplot(121) # Observations without five_stars (left charts)
+        plt.title('Not Five Stars')
+        sns.histplot(col_not_5star.sort_values(ascending=False))
+        plt.subplot(122) # Observations with five_stars (right charts)
+        plt.title('Five Stars')
+        sns.histplot(col_is_5star.sort_values(ascending=False), color='#ffa500')
+        plt.tight_layout()
+        plt.show()
+        not_5star_ratio = (col_not_5star == "True").sum() / col_not_5star.shape[0]
+        is_5star_ratio = (col_is_5star == "True").sum() / col_is_5star.shape[0]
+        percent_difference = is_5star_ratio / not_5star_ratio
+        print(f'Not 5-Star t/f ratio: {int(not_5star_ratio * 100)}%')
+        print(f'Is 5-Star t/f ratio: {int(is_5star_ratio * 100)}%')
+        print(f'Percent Difference of Is 5-Star / Not 5-Star: {int(percent_difference * 100)}%')
