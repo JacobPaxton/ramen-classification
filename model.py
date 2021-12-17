@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from xgboost import XGBClassifier
 
 # -------------------------- main function -------------------------- #
 
@@ -31,6 +32,8 @@ def classification_shotgun(X_insample, y_insample, X_outsample, y_outsample):
     y_insample, y_outsample = naivebayes(X_insample, y_insample, X_outsample, y_outsample)
     # K-Nearest Neighbors classifier - add predictions to df
     y_insample, y_outsample = knearestneighbors(X_insample, y_insample, X_outsample, y_outsample)
+    # XGBoost Classifier - add predictions to df
+    y_insample, y_outsample = xgboosts(X_insample, y_insample, X_outsample, y_outsample)
     
     return y_insample, y_outsample # return dataframes of predictions
 
@@ -170,6 +173,21 @@ def knearestneighbors(X_insample, y_insample, X_outsample, y_outsample):
         # make predictions in new column
         y_insample['knn_n' + str(neighbor_count)] = knn.predict(X_insample)
         y_outsample['knn_n' + str(neighbor_count)] = knn.predict(X_outsample)
+    
+    return y_insample, y_outsample # return dataframe with preds appended
+
+def xgboosts(X_insample, y_insample, X_outsample, y_outsample):
+    """ Create XGBoost models using max_depths of 3, 5, 7, 9 """
+    # set loop list
+    max_depths = [3,5,7,9]
+    # loop through max_depths
+    for depth in max_depths:
+        # create xgboost classifier
+        xgb = XGBClassifier(max_depth=depth, random_state=123)\
+            .fit(X_insample, y_insample.in_actuals)
+        # make predictions in new column
+        y_insample['xgb_maxdepth' + str(depth)] = xgb.predict(X_insample)
+        y_outsample['xgb_maxdepth' + str(depth)] = xgb.predict(X_outsample)
     
     return y_insample, y_outsample # return dataframe with preds appended
 
